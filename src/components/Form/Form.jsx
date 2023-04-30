@@ -9,12 +9,18 @@ export class Form extends Component {
     name: '',
   };
 
-  onInputChangeName = e => {
-    this.setState({ name: e.currentTarget.value });
-  };
+  // onInputChangeName = e => {
+  //   this.setState({ name: e.currentTarget.value });
+  // };
 
-  onInputChangeNumber = e => {
-    this.setState({ number: e.currentTarget.value });
+  // onInputChangeNumber = e => {
+  //   this.setState({ number: e.currentTarget.value });
+  // };
+
+  handleChange = e => {
+    this.setState({
+      [e.currentTarget.name]: e.currentTarget.value,
+    });
   };
 
   onFormSubmit = e => {
@@ -46,8 +52,8 @@ export class Form extends Component {
             type="text"
             name="name"
             value={this.state.name}
-            onChange={this.onInputChangeName}
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            onChange={this.handleChange}
+            // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
           />
@@ -56,8 +62,8 @@ export class Form extends Component {
             type="tel"
             name="number"
             value={this.state.number}
-            onChange={this.onInputChangeNumber}
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            onChange={this.handleChange}
+            // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           />
