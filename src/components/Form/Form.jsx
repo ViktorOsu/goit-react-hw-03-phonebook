@@ -23,16 +23,32 @@ export class Form extends Component {
     });
   };
 
+  // filterContacts = () => {
+  //   const { filter, contacts } = this.state;
+  //   return contacts.filter(contact =>
+  //     contact.name.toLowerCase().includes(filter.toLowerCase())
+  //   );
+  // };
+
   onFormSubmit = e => {
     e.preventDefault();
+
     const contact = {
       id: nanoid(),
       name: this.state.name,
       number: this.state.number,
     };
-    this.props.nameDublicate(contact.name)
-      ? alert(`${contact.name} is already in your contacts.`)
-      : this.props.addContact(contact);
+
+    this.props.addContact(contact);
+
+    // const contact = {
+    //   id: nanoid(),
+    //   name: this.state.name,
+    //   number: this.state.number,
+    // };
+    // this.props.nameDublicate(contact.name)
+    //   ? alert(`${contact.name} is already in your contacts.`)
+    //   : this.props.addContact(contact);
 
     this.setState({
       name: '',
@@ -75,11 +91,5 @@ export class Form extends Component {
 }
 
 Form.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.exact({
-      name: PropTypes.string.isRequired,
-      id: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    }).isRequired
-  ),
+  addContact: PropTypes.func.isRequired,
 };
